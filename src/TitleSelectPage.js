@@ -33,7 +33,6 @@ const useStyles = makeStyles(theme => ({
       "grid-template-columns": "repeat(auto-fit, minmax(100px, 1fr))",
     }
   }
- 
 }))
 
 export default withRouter(function TitleSelectPage(props){
