@@ -55,7 +55,12 @@ const useStyles = makeStyles(theme => ({
   footer:{
     display: "block",
     margin: theme.spacing(2),
-    marginBottom: "400px"
+    marginBottom: "400px",
+    [theme.breakpoints.up('sm')]:{
+      width: "400px",
+      marginRight: "auto",
+      marginLeft: "auto"
+    }
   },
   button:{
     margin: theme.spacing(2)
@@ -86,9 +91,13 @@ const useStyles = makeStyles(theme => ({
     justyifyContent: "center",
     border: "black solid 2px",
     borderRadius: "2px",
+
+    [theme.breakpoints.up('sm')]:{
+      width: "375px"
+    }
   },
   dialogTextField:{
-    width: "100%"
+    width: "100%",
   }
 }))
 
@@ -98,7 +107,7 @@ export default withRouter(function ViewPage(props){
   const bookId = props.match.params.bookId
   const pagenum = props.match.params.pagenum || 0
   useEffect(() => {
-    setTimeout(() => window.scrollTo(0, pagenum), 500)
+    setTimeout(() => window.scrollTo(0, pagenum), 700)
   }, [])
 
   const pages = useLazy(reducer({type:"book", params:{bookId}}), {content:{imageData:[]}})
@@ -166,11 +175,13 @@ export default withRouter(function ViewPage(props){
           コメント一覧
         </Typography>
         {
-          commentManager.get(bookId).map(comment => 
-            <p>
-              p{Math.ceil(comment.pos / (pages.content.height * (window.innerWidth / pages.content.width)))}：
-              <a href={`${window.location.origin}/view/${bookId}/${comment.pos}`}>{comment.text}</a>
-            </p>
+          commentManager.get(bookId).map((comment, id) => 
+            <div key={id}>
+              <p>
+                p{Math.ceil(comment.pos / (pages.content.height * (window.innerWidth / pages.content.width)))}：
+                <a href={`${window.location.origin}/view/${bookId}/${comment.pos}`}>{comment.text}</a>
+              </p>
+            </div>
           )
         }
       </div>

@@ -14,6 +14,10 @@ const useStyles = makeStyles(theme => ({
     color: "black",
     marginBottom: 12,
   },
+  container:{
+    display: "grid",
+    "grid-template-columns": "repeat(auto-fit, minmax(100px, 1fr))",
+  }
 }))
 
 export default withRouter(function BookmarkCard(props){
@@ -25,7 +29,7 @@ export default withRouter(function BookmarkCard(props){
   }
 
   return (
-    <React.Fragment>
+    <div>
       <Card className={classes.card} elevation={1} onClick={openBook}>
         <CardContent>
           <Typography variant="subtitle1" color="textSecondary" component="h4" className={classes.title}>
@@ -33,6 +37,6 @@ export default withRouter(function BookmarkCard(props){
           </Typography>
         </CardContent>
       </Card>
-    </React.Fragment>
+    </div>
   )
 })

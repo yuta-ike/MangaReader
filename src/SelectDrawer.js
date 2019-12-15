@@ -31,7 +31,7 @@ export default withRouter(function SelectDrawer(props){
   const seriesData = useLazy(reducer({type:"series", params:{seriesId}}).then(res => res.content), {books:[]})
 
   const handleClick = (id) => () => {
-    props.history.push(`/view/${id}`)
+    props.history.push(`/view/${id}/0`)
   }
 
   const handleClose = () => {
